@@ -1,9 +1,5 @@
-// Project:         Advanced Locomotion System V4 on C++
-// Copyright:       Copyright (C) 2021 Doğa Can Yanıkoğlu
-// License:         MIT License (http://www.opensource.org/licenses/mit-license.php)
-// Source Code:     https://github.com/dyanikoglu/ALSV4_CPP
-// Original Author: Doğa Can Yanıkoğlu
-// Contributors:    Achim Turan
+// Copyright:       Copyright (C) 2022 Doğa Can Yanıkoğlu
+// Source Code:     https://github.com/dyanikoglu/ALS-Community
 
 
 #include "Library/ALSMathLibrary.h"
@@ -21,17 +17,6 @@ FTransform UALSMathLibrary::MantleComponentLocalToWorld(const FALSComponentAndTr
 	const FQuat Quat = InverseTransform.InverseTransformRotation(CompAndTransform.Transform.GetRotation());
 	const FVector Scale = InverseTransform.InverseTransformPosition(CompAndTransform.Transform.GetScale3D());
 	return {Quat, Location, Scale};
-}
-
-TPair<float, float> UALSMathLibrary::FixDiagonalGamepadValues(const float X, const float Y)
-{
-	float ResultY = X * FMath::GetMappedRangeValueClamped(FVector2D(0.0f, 0.6f),
-	                                                      FVector2D(1.0f, 1.2f), FMath::Abs(Y));
-	ResultY = FMath::Clamp(ResultY, -1.0f, 1.0f);
-	float ResultX = Y * FMath::GetMappedRangeValueClamped(FVector2D(0.0f, 0.6f),
-	                                                      FVector2D(1.0f, 1.2f), FMath::Abs(X));
-	ResultX = FMath::Clamp(ResultX, -1.0f, 1.0f);
-	return TPair<float, float>(ResultY, ResultX);
 }
 
 FVector UALSMathLibrary::GetCapsuleBaseLocation(const float ZOffset, UCapsuleComponent* Capsule)

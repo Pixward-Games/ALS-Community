@@ -190,8 +190,8 @@ bool UALSMantleComponent::MantleCheck(const FALSMantleTraceSettings& TraceSettin
 			                                                DebugType,
 			                                                bHit,
 			                                                HitResult,
-			                                                FLinearColor::Black,
-			                                                FLinearColor::Black,
+			                                                FColor::Purple,
+			                                                FColor::Purple,
 			                                                1.0f);
 		}
 	}

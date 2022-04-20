@@ -323,7 +323,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "ALS|Essential Information")
 	void SetAimYawRate(float NewAimYawRate);
 
-	UFUNCTION(BlueprintCallable, Category = "ALS|Essential Information")
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "ALS|Essential Information")
 	void GetControlForwardRightVector(FVector& Forward, FVector& Right) const;
 
 protected:
@@ -640,6 +640,7 @@ protected:
 	/* Timer to manage reset of braking friction factor after on landed event */
 	FTimerHandle OnLandedFrictionResetTimer;
 
+	UPROPERTY(BlueprintReadOnly, Category="ALS|Data")
 	/* Smooth out aiming by interping control rotation*/
 	FRotator AimingRotation = FRotator::ZeroRotator;
 

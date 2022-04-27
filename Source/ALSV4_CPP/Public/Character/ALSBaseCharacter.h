@@ -59,6 +59,11 @@ public:
 
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
+	// Custom aim action
+	UFUNCTION(BlueprintCallable, Category = "ALS|Ability")
+		void CustomAIM(bool AIM);
+
+
 	/** Ragdoll System */
 
 	/** Implement on BP to get required get up animation according to character's state */

@@ -1419,20 +1419,41 @@ void AALSBaseCharacter::SprintReleasedAction()
 void AALSBaseCharacter::AimPressedAction()
 {
 	// AimAction: Hold "AimAction" to enter the aiming mode, release to revert back the desired rotation mode.
-	SetRotationMode(EALSRotationMode::Aiming);
+	//SetRotationMode(EALSRotationMode::Aiming);
 }
 
 void AALSBaseCharacter::AimReleasedAction()
 {
-	if (ViewMode == EALSViewMode::ThirdPerson)
+	//if (ViewMode == EALSViewMode::ThirdPerson)
+	//{
+	//	SetRotationMode(DesiredRotationMode);
+	//}
+	//else if (ViewMode == EALSViewMode::FirstPerson)
+	//{
+	//	SetRotationMode(EALSRotationMode::LookingDirection);
+	//}
+}
+
+void AALSBaseCharacter::CustomAIM(bool AIM)
+{
+	if (AIM)
 	{
-		SetRotationMode(DesiredRotationMode);
+		SetRotationMode(EALSRotationMode::Aiming);
+
 	}
-	else if (ViewMode == EALSViewMode::FirstPerson)
+	if (!AIM)
 	{
-		SetRotationMode(EALSRotationMode::LookingDirection);
+		if (ViewMode == EALSViewMode::ThirdPerson)
+		{
+			SetRotationMode(DesiredRotationMode);
+		}
+		else if (ViewMode == EALSViewMode::FirstPerson)
+		{
+			SetRotationMode(EALSRotationMode::LookingDirection);
+		}
 	}
 }
+
 
 void AALSBaseCharacter::CameraPressedAction()
 {

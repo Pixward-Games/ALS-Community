@@ -66,6 +66,11 @@ protected:
 	void Multicast_MantleStart(float MantleHeight, const FALSComponentAndTransform& MantleLedgeWS,
 	                           EALSMantleType MantleType);
 
+
+	// Mantle checking conditions
+	UFUNCTION(BlueprintNativeEvent, Category="ALS|Mantle System")
+	bool IsComponentValidForMantle(UPrimitiveComponent* PrimitiveComponent) const;
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ALS|Mantle System")
 	UTimelineComponent* MantleTimeline = nullptr;

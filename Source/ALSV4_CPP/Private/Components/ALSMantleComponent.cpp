@@ -62,6 +62,35 @@ void UALSMantleComponent::BeginPlay()
 	}
 }
 
+bool UALSMantleComponent::IsComponentValidForMantle_Implementation(UPrimitiveComponent* PrimitiveComponent) const
+{
+	// Is hit into pawn component
+	if (PrimitiveComponent->GetCollisionObjectType() == ECC_Pawn)
+	{
+		return false;
+	}
+
+	// If hit into physical object.
+	if (PrimitiveComponent->IsAnySimulatingPhysics() || PrimitiveComponent->IsAnyRigidBodyAwake())
+	{
+		return false;
+	}
+
+	// If hit into pawn itself
+	if (PrimitiveComponent->GetOwner()->GetClass()->IsChildOf(APawn::StaticClass()))
+	{
+		return false;
+	}
+
+	if (PrimitiveComponent && PrimitiveComponent->GetComponentVelocity().Size() > AcceptableVelocityWhileMantling)
+	{
+		// The surface to mantle moves too fast
+		return false;
+	}
+
+	return true;
+}
+
 
 void UALSMantleComponent::TickComponent(float DeltaTime, ELevelTick TickType,
                                         FActorComponentTickFunction* ThisTickFunction)
@@ -205,9 +234,9 @@ bool UALSMantleComponent::MantleCheck(const FALSMantleTraceSettings& TraceSettin
 	if (HitResult.GetComponent() != nullptr)
 	{
 		UPrimitiveComponent* PrimitiveComponent = HitResult.GetComponent();
-		if (PrimitiveComponent && PrimitiveComponent->GetComponentVelocity().Size() > AcceptableVelocityWhileMantling)
+
+		if (!IsComponentValidForMantle(PrimitiveComponent))
 		{
-			// The surface to mantle moves too fast
 			return false;
 		}
 	}

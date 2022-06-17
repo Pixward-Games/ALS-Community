@@ -450,7 +450,7 @@ protected:
 	EALSRotationMode DesiredRotationMode = EALSRotationMode::LookingDirection;
 
 	UPROPERTY(EditAnywhere, Replicated, BlueprintReadWrite, Category = "ALS|Input")
-	EALSGait DesiredGait = EALSGait::Running;
+	EALSGait DesiredGait = EALSGait::Sprinting;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "ALS|Input")
 	EALSStance DesiredStance = EALSStance::Standing;

@@ -26,28 +26,28 @@ class ALSV4_CPP_API UALSMantleComponent : public UActorComponent
 public:
 	UALSMantleComponent();
 
-	UFUNCTION(BlueprintCallable, Category = "ALS|Mantle System")
+	UFUNCTION(BlueprintNativeEvent, Category = "ALS|Mantle System")
 	bool MantleCheck(const FALSMantleTraceSettings& TraceSettings,
 	                 EDrawDebugTrace::Type DebugType);
 
-	UFUNCTION(BlueprintCallable, Category = "ALS|Mantle System")
+	UFUNCTION(BlueprintNativeEvent, Category = "ALS|Mantle System")
 	void MantleStart(float MantleHeight, const FALSComponentAndTransform& MantleLedgeWS,
 	                EALSMantleType MantleType);
 
-	UFUNCTION(BlueprintCallable, Category = "ALS|Mantle System")
+	UFUNCTION(BlueprintNativeEvent, Category = "ALS|Mantle System")
 	void MantleUpdate(float BlendIn);
 
-	UFUNCTION(BlueprintCallable, Category = "ALS|Mantle System")
+	UFUNCTION(BlueprintNativeEvent, Category = "ALS|Mantle System")
 	void MantleEnd();
 
-	UFUNCTION(BlueprintCallable, Category = "ALS|Mantle System")
+	UFUNCTION(BlueprintNativeEvent, Category = "ALS|Mantle System")
 	void OnOwnerJumpInput();
 
-	UFUNCTION(BlueprintCallable, Category = "ALS|Mantle System")
+	UFUNCTION(BlueprintNativeEvent, Category = "ALS|Mantle System")
 	void OnOwnerRagdollStateChanged(bool bRagdollState);
 
 	/** Implement on BP to get correct mantle parameter set according to character state */
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "ALS|Mantle System")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "ALS|Mantle System")
 	FALSMantleAsset GetMantleAsset(EALSMantleType MantleType, EALSOverlayState CurrentOverlayState);
 
 protected:

@@ -92,6 +92,11 @@ bool UALSMantleComponent::IsComponentValidForMantle_Implementation(UPrimitiveCom
 }
 
 
+FALSMantleAsset UALSMantleComponent::GetMantleAsset_Implementation(EALSMantleType MantleType,EALSOverlayState CurrentOverlayState)
+{
+	return FALSMantleAsset();
+}
+
 void UALSMantleComponent::TickComponent(float DeltaTime, ELevelTick TickType,
                                         FActorComponentTickFunction* ThisTickFunction)
 {
@@ -107,7 +112,7 @@ void UALSMantleComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	}
 }
 
-void UALSMantleComponent::MantleStart(float MantleHeight, const FALSComponentAndTransform& MantleLedgeWS,
+void UALSMantleComponent::MantleStart_Implementation(float MantleHeight, const FALSComponentAndTransform& MantleLedgeWS,
                                       EALSMantleType MantleType)
 {
 	if (OwnerCharacter == nullptr || !IsValid(MantleLedgeWS.Component) || !IsValid(MantleTimeline))
@@ -180,7 +185,7 @@ void UALSMantleComponent::MantleStart(float MantleHeight, const FALSComponentAnd
 	}
 }
 
-bool UALSMantleComponent::MantleCheck(const FALSMantleTraceSettings& TraceSettings, EDrawDebugTrace::Type DebugType)
+bool UALSMantleComponent::MantleCheck_Implementation(const FALSMantleTraceSettings& TraceSettings, EDrawDebugTrace::Type DebugType)
 {
 	if (!OwnerCharacter)
 	{
@@ -342,7 +347,7 @@ void UALSMantleComponent::Multicast_MantleStart_Implementation(float MantleHeigh
 }
 
 // This function is called by "MantleTimeline" using BindUFunction in the AALSBaseCharacter::BeginPlay during the default settings initalization.
-void UALSMantleComponent::MantleUpdate(float BlendIn)
+void UALSMantleComponent::MantleUpdate_Implementation(float BlendIn)
 {
 	if (!OwnerCharacter)
 	{
@@ -408,7 +413,7 @@ void UALSMantleComponent::MantleUpdate(float BlendIn)
 	OwnerCharacter->SetActorLocationAndTargetRotation(LerpedTarget.GetLocation(), LerpedTarget.GetRotation().Rotator());
 }
 
-void UALSMantleComponent::MantleEnd()
+void UALSMantleComponent::MantleEnd_Implementation()
 {
 	// Set the Character Movement Mode to Walking
 	if (OwnerCharacter)
@@ -425,7 +430,7 @@ void UALSMantleComponent::MantleEnd()
 	SetComponentTickEnabledAsync(true);
 }
 
-void UALSMantleComponent::OnOwnerJumpInput()
+void UALSMantleComponent::OnOwnerJumpInput_Implementation()
 {
 	// Check if character is able to do one of the special mantling
 
@@ -445,7 +450,7 @@ void UALSMantleComponent::OnOwnerJumpInput()
 	}
 }
 
-void UALSMantleComponent::OnOwnerRagdollStateChanged(bool bRagdollState)
+void UALSMantleComponent::OnOwnerRagdollStateChanged_Implementation(bool bRagdollState)
 {
 	// If owner is going into ragdoll state, stop mantling immediately
 	if (bRagdollState)

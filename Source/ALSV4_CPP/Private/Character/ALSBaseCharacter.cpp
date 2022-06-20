@@ -597,7 +597,7 @@ FALSMovementSettings AALSBaseCharacter::GetTargetMovementSettings() const
 	return MovementData.VelocityDirection.Standing;
 }
 
-bool AALSBaseCharacter::CanSprint() const
+bool AALSBaseCharacter::CanSprint_Implementation() const
 {
 	// Determine if the character is currently able to sprint based on the Rotation mode and current acceleration
 	// (input) rotation. If the character is in the Looking Rotation mode, only allow sprinting if there is full
@@ -1232,7 +1232,7 @@ void AALSBaseCharacter::UpdateInAirRotation(float DeltaTime)
 	}
 }
 
-EALSGait AALSBaseCharacter::GetAllowedGait() const
+EALSGait AALSBaseCharacter::GetAllowedGait_Implementation() const
 {
 	// Calculate the Allowed Gait. This represents the maximum Gait the character is currently allowed to be in,
 	// and can be determined by the desired gait, the rotation mode, the stance, etc. For example,
@@ -1244,8 +1244,7 @@ EALSGait AALSBaseCharacter::GetAllowedGait() const
 		{
 			if (DesiredGait == EALSGait::Sprinting)
 			{
-				return EALSGait::Sprinting;
-				//return CanSprint() ? EALSGait::Sprinting : EALSGait::Running;
+				return CanSprint() ? EALSGait::Sprinting : EALSGait::Running;
 			}
 			return DesiredGait;
 		}

@@ -230,13 +230,13 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "ALS|Movement System")
 	FALSMovementSettings GetTargetMovementSettings() const;
 
-	UFUNCTION(BlueprintCallable, Category = "ALS|Movement System")
+	UFUNCTION(BlueprintNativeEvent, Category = "ALS|Movement System")
 	EALSGait GetAllowedGait() const;
 
 	UFUNCTION(BlueprintCallable, Category = "ALS|Movement System")
 	EALSGait GetActualGait(EALSGait AllowedGait) const;
 
-	UFUNCTION(BlueprintCallable, Category = "ALS|Movement System")
+	UFUNCTION(BlueprintNativeEvent, Category = "ALS|Movement System")
 	bool CanSprint() const;
 
 	/** BP implementable function that called when Breakfall starts */
@@ -450,7 +450,7 @@ protected:
 	EALSRotationMode DesiredRotationMode = EALSRotationMode::LookingDirection;
 
 	UPROPERTY(EditAnywhere, Replicated, BlueprintReadWrite, Category = "ALS|Input")
-	EALSGait DesiredGait = EALSGait::Sprinting;
+	EALSGait DesiredGait = EALSGait::Running;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "ALS|Input")
 	EALSStance DesiredStance = EALSStance::Standing;

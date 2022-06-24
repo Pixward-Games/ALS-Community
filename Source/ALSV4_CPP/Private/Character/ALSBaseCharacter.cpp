@@ -529,11 +529,14 @@ void AALSBaseCharacter::SetActorLocationAndTargetRotation(FVector NewLocation, F
 
 void AALSBaseCharacter::SetMovementModel()
 {
-	const FString ContextString = GetFullName();
-	FALSMovementStateSettings* OutRow =
-		MovementModel.DataTable->FindRow<FALSMovementStateSettings>(MovementModel.RowName, ContextString);
-	check(OutRow);
-	MovementData = *OutRow;
+	if (GetMesh()->AnimClass != nullptr)
+	{
+		const FString ContextString = GetFullName();
+		FALSMovementStateSettings* OutRow =
+			MovementModel.DataTable->FindRow<FALSMovementStateSettings>(MovementModel.RowName, ContextString);
+		check(OutRow);
+		MovementData = *OutRow;
+	}
 }
 
 void AALSBaseCharacter::ForceUpdateCharacterState()

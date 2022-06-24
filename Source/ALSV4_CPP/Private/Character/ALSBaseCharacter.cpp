@@ -1247,8 +1247,7 @@ EALSGait AALSBaseCharacter::GetAllowedGait_Implementation() const
 		{
 			if (DesiredGait == EALSGait::Sprinting)
 			{
-				//return CanSprint() ? EALSGait::Sprinting : EALSGait::Running;
-				return EALSGait::Sprinting;
+				return CanSprint() ? EALSGait::Sprinting : EALSGait::Running;
 			}
 			return DesiredGait;
 		}

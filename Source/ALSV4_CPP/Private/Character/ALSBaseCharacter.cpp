@@ -1397,10 +1397,10 @@ void AALSBaseCharacter::JumpPressedAction()
 				UnCrouch();
 			}
 		}
-		else if (MovementState == EALSMovementState::Ragdoll)
-		{
-			ReplicatedRagdollEnd();
-		}
+		//else if (MovementState == EALSMovementState::Ragdoll)
+		//{
+		//	ReplicatedRagdollEnd();
+		//}
 	}
 }
 

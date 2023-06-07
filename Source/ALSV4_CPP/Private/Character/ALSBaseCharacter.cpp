@@ -749,7 +749,7 @@ void AALSBaseCharacter::RagdollUpdate(float DeltaTime)
 		                      : LastRagdollVelocity / 2;
 
 	// Use the Ragdoll Velocity to scale the ragdoll's joint strength for physical animation.
-	const float SpringValue = FMath::GetMappedRangeValueClamped({0.0f, 1000.0f}, {0.0f, 25000.0f},
+	const float SpringValue = FMath::GetMappedRangeValueClamped(FVector2d{0.0f, 1000.0f}, FVector2d{0.0f, 25000.0f},
 	                                                            LastRagdollVelocity.Size());
 	GetMesh()->SetAllMotorsAngularDriveParams(SpringValue, 0.0f, 0.0f, false);
 
@@ -1308,7 +1308,7 @@ float AALSBaseCharacter::CalculateGroundedRotationRate() const
 	const float MappedSpeedVal = MyCharacterMovementComponent->GetMappedSpeed();
 	const float CurveVal =
 		MyCharacterMovementComponent->CurrentMovementSettings.RotationRateCurve->GetFloatValue(MappedSpeedVal);
-	const float ClampedAimYawRate = FMath::GetMappedRangeValueClamped({0.0f, 300.0f}, {1.0f, 3.0f}, AimYawRate);
+	const float ClampedAimYawRate = FMath::GetMappedRangeValueClamped(FVector2d{0.0f, 300.0f}, FVector2d{1.0f, 3.0f}, AimYawRate);
 	return CurveVal * ClampedAimYawRate;
 }
 
@@ -1397,10 +1397,10 @@ void AALSBaseCharacter::JumpPressedAction()
 				UnCrouch();
 			}
 		}
-		//else if (MovementState == EALSMovementState::Ragdoll)
-		//{
-		//	ReplicatedRagdollEnd();
-		//}
+		else if (MovementState == EALSMovementState::Ragdoll)
+		{
+			ReplicatedRagdollEnd();
+		}
 	}
 }
 

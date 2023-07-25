@@ -71,10 +71,10 @@ bool UALSMantleComponent::IsComponentValidForMantle_Implementation(UPrimitiveCom
 	}
 
 	// If hit into physical object.
-	if (PrimitiveComponent->IsAnySimulatingPhysics() || PrimitiveComponent->IsAnyRigidBodyAwake())
-	{
-		return false;
-	}
+	//if (PrimitiveComponent->IsAnySimulatingPhysics() || PrimitiveComponent->IsAnyRigidBodyAwake())
+	//{
+	//	return false;
+//	}
 
 	// If hit into pawn itself
 	if (PrimitiveComponent->GetOwner()->GetClass()->IsChildOf(APawn::StaticClass()))
@@ -286,7 +286,7 @@ bool UALSMantleComponent::MantleCheck_Implementation(const FALSMantleTraceSettin
 	if (!OwnerCharacter->GetCharacterMovement()->IsWalkable(HitResult))
 	{
 		// Not a valid surface to mantle
-		return false;
+	//	return false;
 	}
 
 	const FVector DownTraceLocation(HitResult.Location.X, HitResult.Location.Y, HitResult.ImpactPoint.Z);

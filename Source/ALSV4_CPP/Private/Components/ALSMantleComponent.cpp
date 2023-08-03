@@ -76,6 +76,11 @@ bool UALSMantleComponent::IsComponentValidForMantle_Implementation(UPrimitiveCom
 	//	return false;
 //	}
 
+	if (PrimitiveComponent->IsAnySimulatingPhysics())
+	{
+		return false;
+	}
+
 	// If hit into pawn itself
 	if (PrimitiveComponent->GetOwner()->GetClass()->IsChildOf(APawn::StaticClass()))
 	{

@@ -15,6 +15,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Library/ALSMathLibrary.h"
+#include "Weapon/Interface_Weapon.h"
 
 
 const FName NAME_MantleEnd(TEXT("MantleEnd"));
@@ -238,6 +239,11 @@ bool UALSMantleComponent::MantleCheck_Implementation(const FALSMantleTraceSettin
 			                                                FColor::Purple,
 			                                                1.0f);
 		}
+		// Добавьте проверку наличия интерфейса Interface_Weapon у актора
+		if (bHit && HitResult.GetActor() && !HitResult.GetActor()->Implements<UInterface_Weapon>())
+		{
+			Params.AddIgnoredActor(HitResult.GetActor());
+		}
 	}
 
 	if (!HitResult.IsValidBlockingHit() || OwnerCharacter->GetCharacterMovement()->IsWalkable(HitResult))
@@ -284,6 +290,11 @@ bool UALSMantleComponent::MantleCheck_Implementation(const FALSMantleTraceSettin
 			                                               FLinearColor::Black,
 			                                               FLinearColor::Black,
 			                                               1.0f);
+		}
+		// Добавьте проверку наличия интерфейса Interface_Weapon у актора
+		if (bHit && HitResult.GetActor() && !HitResult.GetActor()->Implements<UInterface_Weapon>())
+		{
+			Params.AddIgnoredActor(HitResult.GetActor());
 		}
 	}
 

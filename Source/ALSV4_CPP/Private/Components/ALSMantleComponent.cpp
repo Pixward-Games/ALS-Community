@@ -240,7 +240,7 @@ bool UALSMantleComponent::MantleCheck_Implementation(const FALSMantleTraceSettin
 			                                                1.0f);
 		}
 		// Добавьте проверку наличия интерфейса Interface_Weapon у актора
-		if (bHit && HitResult.GetActor() && !HitResult.GetActor()->Implements<UInterface_Weapons>())
+		if (bHit && HitResult.GetActor() && HitResult.GetActor()->Implements<UInterface_Weapons>())
 		{
 			Params.AddIgnoredActor(HitResult.GetActor());
 		}
@@ -292,7 +292,7 @@ bool UALSMantleComponent::MantleCheck_Implementation(const FALSMantleTraceSettin
 			                                               1.0f);
 		}
 		// Добавьте проверку наличия интерфейса Interface_Weapon у актора
-		if (bHit && HitResult.GetActor() && !HitResult.GetActor()->Implements<UInterface_Weapons>())
+		if (bHit && HitResult.GetActor() && HitResult.GetActor()->Implements<UInterface_Weapons>())
 		{
 			Params.AddIgnoredActor(HitResult.GetActor());
 		}

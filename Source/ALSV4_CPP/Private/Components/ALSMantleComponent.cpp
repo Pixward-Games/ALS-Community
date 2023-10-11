@@ -15,7 +15,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Library/ALSMathLibrary.h"
-#include "Weapon/Interface_Weapon.h"
+#include "Weapon/Interface_Weapons.h"
 
 
 const FName NAME_MantleEnd(TEXT("MantleEnd"));
@@ -240,7 +240,7 @@ bool UALSMantleComponent::MantleCheck_Implementation(const FALSMantleTraceSettin
 			                                                1.0f);
 		}
 		// Добавьте проверку наличия интерфейса Interface_Weapon у актора
-		if (bHit && HitResult.GetActor() && !HitResult.GetActor()->Implements<UInterface_Weapon>())
+		if (bHit && HitResult.GetActor() && !HitResult.GetActor()->Implements<UInterface_Weapons>())
 		{
 			Params.AddIgnoredActor(HitResult.GetActor());
 		}
@@ -292,7 +292,7 @@ bool UALSMantleComponent::MantleCheck_Implementation(const FALSMantleTraceSettin
 			                                               1.0f);
 		}
 		// Добавьте проверку наличия интерфейса Interface_Weapon у актора
-		if (bHit && HitResult.GetActor() && !HitResult.GetActor()->Implements<UInterface_Weapon>())
+		if (bHit && HitResult.GetActor() && !HitResult.GetActor()->Implements<UInterface_Weapons>())
 		{
 			Params.AddIgnoredActor(HitResult.GetActor());
 		}
